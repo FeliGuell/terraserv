@@ -5,6 +5,8 @@ Sistema para gestionar informes de estudios geofísicos.
 ![image](https://github.com/user-attachments/assets/f8cc8c69-3fba-43e0-8d65-3637cb5b9dc4)
 
 
+
+
 ## Índice
 1. [Descripción del Proyecto](#descripción-del-proyecto)
 2. [Tecnologías Utilizadas](#tecnologías-utilizadas)
@@ -20,9 +22,13 @@ Sistema para gestionar informes de estudios geofísicos.
 8. [Contacto](#contacto)
 
 
+
+
 ## Descripción del Proyecto
 
 Es una aplicación web para gestionar los informes de estudios geofísicos de una empresa. Esta solución permite a la empresa centralizar todos sus informes de los estudios geofísicos, que antes estaban dispersos en diversas carpetas locales en diferentes computadoras. La aplicación facilita la creación, gestión y visualización de estudios geofísicos mediante una interfaz intuitiva y funcionalidades avanzadas como la carga de archivos, almacenamiento en Amazon S3, búsqueda en un mapa interactivo con Leaflet.js, y autocompletado de ubicaciones con Google Places API.
+
+
 
 
 ## Tecnologías Utilizadas
@@ -54,6 +60,9 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
 - Ngx image compress 15.1.6
 - Popper 1.16.1
 - SweetAlert2 11.10.2
+
+
+
 
 
 ## Estructura del Proyecto
@@ -109,9 +118,13 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
 
 
 
+
+
 ## Diagrama de la base de datos
 
 ![image](https://github.com/user-attachments/assets/74b69e2d-0538-4bc2-ad27-a44015d3dbf3)
+
+
 
 
 ## Instalación y Configuración
@@ -162,6 +175,8 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
     
 
 
+
+
 ## Uso
    - Ejecutar el Backend
      En Intellij IDEA, ejecutar TerraservApiRestApplication.
@@ -170,8 +185,12 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
      En Visual Studio Code, ejecutar con el comando "ng serve" en la terminal.
 
 
+
+
 ## Despliegue
   Para el deploy del backend: https://www.youtube.com/watch?v=cMXTd6PoFpo. 
+
+
 
 
 ## Contacto

@@ -6,7 +6,6 @@ Sistema para gestionar informes de estudios geofísicos.
 
 
 
-<br>
 ## Índice
 1. [Descripción del Proyecto](#descripción-del-proyecto)
 2. [Tecnologías Utilizadas](#tecnologías-utilizadas)
@@ -23,14 +22,12 @@ Sistema para gestionar informes de estudios geofísicos.
 
 
 
-<br>
 ## Descripción del Proyecto
 
 Es una aplicación web para gestionar los informes de estudios geofísicos de una empresa. Esta solución permite a la empresa centralizar todos sus informes de los estudios geofísicos, que antes estaban dispersos en diversas carpetas locales en diferentes computadoras. La aplicación facilita la creación, gestión y visualización de estudios geofísicos mediante una interfaz intuitiva y funcionalidades avanzadas como la carga de archivos, almacenamiento en Amazon S3, búsqueda en un mapa interactivo con Leaflet.js, y autocompletado de ubicaciones con Google Places API.
 
 
 
-<br>
 ## Tecnologías Utilizadas
 
 Listado de las tecnologías, lenguajes, frameworks y herramientas que se utilizaron para desarrollar el proyecto.
@@ -64,7 +61,6 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
 
 
 
-<br>
 ## Estructura del Proyecto
 
 ```plaintext
@@ -119,12 +115,11 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
 
 
 
-<br>
 ## Diagrama de la base de datos
 
 ![image](https://github.com/user-attachments/assets/74b69e2d-0538-4bc2-ad27-a44015d3dbf3)
 
-<br>
+
 ## Instalación y Configuración
 
   ### Backend API
@@ -170,17 +165,20 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
        2. Crear la clave API_KEY_GOOGLE_PLACES. Puede seguir la documentación en este enlace: https://developers.google.com/maps/documentation/places/web-service/get-api-key?hl=es-419.
        3. Crear la clave API_KEY_STADIA_MAPS.Puede seguir la documentación en este enlace: https://docs.stadiamaps.com/authentication/
        4. DELAY simula un retraso en el inicio de sesión, eliminarselo o ponerlo en 0. 
-<br>
+
+
 ## Uso
    - Ejecutar el Backend
      En Intellij IDEA, ejecutar TerraservApiRestApplication.
 
    - Ejecutar el Frontend
      En Visual Studio Code, ejecutar con el comando "ng serve" en la terminal.
-<br>
+
+     
 ## Despliegue
   Para el deploy del backend: https://www.youtube.com/watch?v=cMXTd6PoFpo. 
-<br>
+
+
 ## Contacto
   - Gmail: feliguells@gmail.com
   - Telefono: +54 9 2645-846-555

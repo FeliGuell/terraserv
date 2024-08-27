@@ -1,0 +1,7 @@
+export enum EnumAreaAplicacionEstudioGeofisico {
+    GEOTECNIA = 'GEOTECNIA',
+    HIDROGEOLOGIA = 'HIDROGEOLOGIA',
+    ARQUEOLOGIA = 'ARQUEOLOGIA',
+    MEDIO_AMBIENTE = 'MEDIO_AMBIENTE',
+    MINERIA = 'MINERIA',
+  }

@@ -1,0 +1,63 @@
+<!-- Coordenadas -->
+
+
+
+<div [formGroup]="parentForm" class="row my-2">
+
+    <!-- Contenedor del mapa Leaflet -->
+    <div id="map" class="col-md mb-2"></div>
+
+    <!-- Contenedor de las coordenadas -->
+    <div formArrayName="coordenadas" class="col-md">
+        <!-- Botones para agregar y eliminar coordenadas -->
+        <div class="row">
+            <div class="col-auto">
+                <!-- Botón para agregar coordenada -->
+                <button type="button" (click)="addCoordenada()" class="btn btn-dark btn-sm mb-2"
+                    [disabled]="contadorCoordenadas >= maxCoordenadas">
+                    <i class="bi bi-plus-circle"></i>
+                    Agregar</button>
+            </div>
+            <div class="col-auto">
+                <!-- Botón para eliminar coordenada -->
+                <button type="button" (click)="deleteCoordenada()" class="btn btn-dark btn-sm mb-2"
+                    [disabled]="contadorCoordenadas <= minCoordenadas">
+                    <i class="bi bi-trash"></i>
+                    Borrar</button>
+            </div>
+        </div>
+
+        <!-- Iteración sobre las coordenadas -->
+        <div class="row">
+            <!-- Iteración sobre cada coordenada en el arreglo -->
+            <div *ngFor="let coordenada of coordenadasFormArray.controls; let i = index" [formGroupName]="i">
+                <!-- Título de la coordenada -->
+                <span class="fw-medium">Coordenada {{i+1}} </span>
+                <!-- Entradas para latitud y longitud de la coordenada -->
+                <div class="row g-2 mb-2">
+                    
+                    <!-- Latitud en decimal -->
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input type="number" formControlName="latitudDecimal" id="latitudDecimal{{i}}"
+                                placeholder="Latitud" class="form-control" step="0.0000000000001"
+                                (input)="adjustIncrement()" [min]="minValueLatitude" [max]="maxValueLatitude" />
+                            <label for="latitudDecimal{{i}}">Latitud</label>
+                        </div>
+                    </div>
+
+                    <!-- Longitud en decimal -->
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input type="number" formControlName="longitudDecimal" id="longitudDecimal{{i}}"
+                                placeholder="Longitud" class="form-control" step="0.0000000000001"
+                                (input)="adjustIncrement()" [min]="minValueLongitude" [max]="maxValueLongitude" />
+                            <label for="longitudDecimal{{i}}">Longitud</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

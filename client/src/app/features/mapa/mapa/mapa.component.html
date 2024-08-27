@@ -1,0 +1,118 @@
+
+<app-header></app-header>
+
+<div class="container-fluid position-relative p-0">
+    <!-- Mapa -->
+    <div id="map" style="height: 80vh;"></div>
+
+     <!-- Contenedor para el icono de filtrado y el cuadro de búsqueda -->
+    <div class="position-absolute top-0 end-0">
+         <!-- Cuadro de búsqueda -->
+         <div id="searchForm" class="collapse position-absolute end-0 mt-3 me-5 p-2 border border-0 rounded bg-dark-subtle shadow " style="z-index: 99; width: 250px; top: 10vh;">
+            <app-busqueda></app-busqueda>
+        </div>
+         <!-- Icono de filtrado -->
+        <button class="btn btn-light btn-sm position-absolute end-0 mt-3 me-3 border border-black border-2 border-opacity-25" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#searchForm" 
+                aria-expanded="false" 
+                aria-controls="searchForm"
+                style="z-index: 100; top: 10vh;"
+        >
+            <i class="bi bi-funnel-fill"></i>
+        </button>
+       
+    </div>
+</div>
+
+
+
+
+<div class="container mt-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        <!-- Marker purple - GPR -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/purple-marker.png" alt="purple Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">G.P.R.</span>
+            </div>
+        </div>
+
+        <!-- Marker lightblue - MASW -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/brown-marker.png" alt="lightblue Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">M.A.S.W.</span>
+            </div>
+        </div>
+
+        <!-- Marker blue - PERFILAJE POZO -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/blue-marker.png" alt="blue Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">PERFILAJE POZO</span>
+            </div>
+        </div>
+
+        <!-- Marker green - SEV SCHLUMBERGER  -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/green-marker.png" alt="green Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">S.E.V. SCHLUMBERGER</span>
+            </div>
+        </div>
+
+        <!-- Marker brown - SEV WENNER  -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/lightgreen-marker.png" alt="brown Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">S.E.V. WENNER</span>
+            </div>
+        </div>
+
+        <!-- Marker yellow - TOMOGRAFIA ELECTRICA DIPOLO-DIPOLO  -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/yellow-marker.png" alt="yellow Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">T.E. DIPOLO-DIPOLO</span>
+            </div>
+        </div>
+
+        <!-- Marker orange - TOMOGRAFIA ELECTRICA DIPOLO-POLO  -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/orange-marker.png" alt="orange Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">T.E. DIPOLO-POLO</span>
+            </div>
+        </div>
+
+        <!-- Marker red - TOMOGRAFIA ELECTRICA POLO-POLO  -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/red-marker.png" alt="red Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">T.E. POLO-POLO</span>
+            </div>
+        </div>
+
+        <!-- Marker pink - TOMOGRAFIA SISMICA  -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/pink-marker.png" alt="pink Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">TOMOGRAFÍA SÍSMICA</span>
+            </div>
+        </div>
+
+
+        <!-- Marker gray - MÚLTIPLES TIPOS DE ESTUDIO  -->
+        <div class="col mb-2">
+            <div class="d-flex align-items-center">
+                <img src="../../../../assets/markers/gray-marker.png" alt="gray Marker" class="me-2" style="width: 20px; height: auto;">
+                <span class="fw-bold">MÚLTIPLES TIPOS DE ESTUDIO</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+  

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="content">
+    <div class="logo">
+      <!-- Icon -->
+      <img src="assets/logo.png" alt="User Icon" />
+    </div>
+
+    <p class="error-message">{{loginError}}</p>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" class="login-form">
+      <input type="text" id="username" name="username" placeholder="Username" formControlName="username">
+      <!-- Mensaje de error  -->
+      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="error-message">
+        Username es requerido
+      </div>
+
+      <input type="password" id="password" name="password" placeholder="Password" formControlName="password">
+      <!-- Mensaje de error  -->
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+        Password es requerido
+      </div>
+
+      <input type="submit" value="Iniciar sesión" (click)="login()" [disabled]="isSubmitting">
+      <span *ngIf="isSubmitting">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </span>
+    </form>
+  </div>
+</div>

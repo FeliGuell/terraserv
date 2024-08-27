@@ -1,0 +1,13 @@
+.carousel-item img {
+    object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor sin recortarla */
+    background-color: #ced4da; /* Rellena el espacio sobrante con blanco */
+    max-height: 500px; /* Ajusta esto al valor que prefieras */
+    width: 100%; /* Cambiado a 100% para que la imagen ocupe todo el ancho del contenedor */
+}
+
+
+@media (max-width: 768px) {
+    .carousel-item img{
+        max-height: 200px; /* Cambia el tamaño máximo del carrusel para dispositivos con un ancho máximo de 768px */
+    }
+}

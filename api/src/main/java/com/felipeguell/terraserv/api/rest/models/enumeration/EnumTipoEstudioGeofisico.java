@@ -1,0 +1,13 @@
+package com.felipeguell.terraserv.api.rest.models.enumeration;
+
+public enum EnumTipoEstudioGeofisico {
+	GPR,
+	MASW,
+	PERFILAJE_POZO,
+	SEV_SCHLUMBERGER,
+	SEV_WENNER,
+	TOMOGRAFIA_ELECTRICA_DIPOLO_DIPOLO,
+	TOMOGRAFIA_ELECTRICA_DIPOLO_POLO,
+	TOMOGRAFIA_ELECTRICA_POLO_POLO,
+	TOMOGRAFIA_SISMICA
+}

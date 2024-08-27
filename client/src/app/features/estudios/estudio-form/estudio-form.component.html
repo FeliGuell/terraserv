@@ -1,0 +1,255 @@
+<app-header></app-header>
+
+<div class="container my-5 p-4 bg-dark-subtle bg-body-tertiary shadow rounded">
+
+    <div class="row align-items-center mb-4">
+        <div class="col">
+            <h2>Formulario de Estudio Geofísico</h2>
+        </div>
+        <div class="col-auto">
+            <div class="spinner-border" role="status" *ngIf="!uploadEstudioToEditFinish && isUploadingEstudioToEdit"
+                style="width: 3rem; height: 3rem;"></div>
+        </div>
+    </div>
+
+    <form [formGroup]="form">
+
+        <!-- Datos -->
+        <div class="row mb-4 border-bottom border-3">
+            <div class="col-auto">
+                <i class="bi bi-1-circle-fill"></i>
+            </div>
+            <div class="col">
+                <h5>Datos</h5>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <!-- Nombre del Estudio -->
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="nombreEstudio" formControlName="nombreEstudio"
+                        [ngClass]="{'is-invalid': nombreEstudio.invalid && (nombreEstudio.dirty || nombreEstudio.touched)}" />
+                    <label for="nombreEstudio">Nombre del Estudio</label>
+                </div>
+                <!-- Mensajes de errores  -->
+                <div *ngIf="nombreEstudio.invalid && (nombreEstudio.dirty || nombreEstudio.touched)">
+                    <div *ngIf="nombreEstudio.errors?.['required']" class="text-danger p-1">
+                        El nombre del estudio es requerido</div>
+                </div>
+            </div>
+
+            <!-- Nombre del Cliente -->
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="nombreCliente" formControlName="nombreCliente"
+                        [ngClass]="{'is-invalid': nombreCliente.invalid && (nombreCliente.dirty || nombreCliente.touched)}" />
+                    <label for="nombreCliente">Nombre del Cliente</label>
+                </div>
+                <!-- Mensajes de errores  -->
+                <div *ngIf="nombreCliente.invalid && (nombreCliente.dirty || nombreCliente.touched)">
+                    <div *ngIf="nombreCliente.errors?.['required']" class="text-danger p-1">
+                        El nombre del cliente es requerido</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <!-- Fecha Realizado -->
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="fechaRealizado" formControlName="fechaRealizado"
+                        [ngClass]="{'is-invalid': fechaRealizado.invalid && (fechaRealizado.dirty || fechaRealizado.touched)}" />
+                    <label for="fechaRealizado">Fecha Realizado</label>
+                </div>
+                <!-- Mensajes de errores  -->
+                <div *ngIf="fechaRealizado.invalid && (fechaRealizado.dirty || fechaRealizado.touched)">
+                    <div *ngIf="fechaRealizado.errors?.['required']" class="text-danger p-1">
+                        La fecha es requerida</div>
+                    <div *ngIf="fechaRealizado.errors?.['fechaInvalida']" class="text-danger p-1">
+                        La fecha no puede ser en el futuro</div>
+                </div>
+            </div>
+
+            <!-- Ubicación del estudio-->
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="ubicacionEstudio" formControlName="ubicacionEstudio"
+                        [ngClass]="{'is-invalid': ubicacionEstudio.invalid && (ubicacionEstudio.dirty || ubicacionEstudio.touched)}" />
+                    <label for="ubicacionEstudio">Ubicación (Localidad - Ciudad - País)</label>
+                </div>
+                <!-- Mensajes de errores  -->
+                <div *ngIf="ubicacionEstudio.invalid && (ubicacionEstudio.dirty || ubicacionEstudio.touched)">
+                    <div *ngIf="ubicacionEstudio.errors?.['required']" class="text-danger p-1">
+                        La ubicación del estudio es requerida</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <!-- Descripción -->
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="descripcion" formControlName="descripcion"
+                        [ngClass]="{'is-invalid': descripcion.invalid && (descripcion.dirty || descripcion.touched)}" />
+                    <label for="descripcion">Descripción</label>
+                </div>
+                <!-- Mensajes de errores  -->
+                <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                    <div *ngIf="descripcion.errors?.['required']" class="text-danger p-1">
+                        La descripción es requerida</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <!-- Área de aplicación del estudio -->
+            <div class="col-md" formArrayName="areasEstudio">
+                <label class="mb-2" for="areasEstudio">Área de aplicación del Estudio</label>
+                <div *ngIf="areasEstudioFormArray.controls.length >= 1 || idEstudioToEdit == null">
+                    <ul class="list-group" id="areasEstudio"
+                        [ngClass]="{'is-invalid': areasEstudioFormArray.invalid && (areasEstudioFormArray.dirty || areasEstudioFormArray.touched)}">
+                        <li class="list-group-item" *ngFor="let opcion of areaEstudioOptions; let i = index">
+                            <label class="form-check-label" [for]="opcion.value" *ngIf="idEstudioToEdit">
+                                <input class="form-check-input me-1" type="checkbox" [formControlName]="i"
+                                    [value]="opcion.value" [id]="opcion.value" (change)="handleAreaEstudioEdit($event)">
+                                {{ opcion.label }}
+                            </label>
+
+                            <label class="form-check-label" [for]="opcion.value" *ngIf="idEstudioToEdit == null">
+                                <input class="form-check-input me-1" type="checkbox" [value]="opcion.value"
+                                    [id]="opcion.value" (change)="handleAreaEstudioNew($event)">
+                                {{ opcion.label }}
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <!-- Mensajes de errores  -->
+                <div
+                    *ngIf="areasEstudioFormArray.invalid && (areasEstudioFormArray.dirty || areasEstudioFormArray.touched)">
+                    <div *ngIf="areasEstudioFormArray.errors?.['required']" class="text-danger p-1">
+                        Debe seleccionar al menos un área de estudio
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tipo de Estudio -->
+            <div class="col-md" formArrayName="tiposEstudio">
+                <label class="mb-2" for="tiposEstudio">Tipo de Estudio</label>
+                <div *ngIf="tiposEstudioFormArray.controls.length >= 1 || idEstudioToEdit == null">
+                    <ul class="list-group" id="tiposEstudio"
+                        [ngClass]="{'is-invalid': tiposEstudioFormArray.invalid && (tiposEstudioFormArray.dirty || tiposEstudioFormArray.touched)}">
+                        <li class="list-group-item" *ngFor="let opcion of tipoEstudioOptions; let i = index">
+                            <label class="form-check-label" [for]="opcion.value" *ngIf="idEstudioToEdit">
+                                <input class="form-check-input me-1" type="checkbox" [formControlName]="i"
+                                    [value]="opcion.value" [id]="opcion.value" (change)="handleTipoEstudioEdit($event)">
+                                {{ opcion.label }}
+                            </label>
+
+                            <label class="form-check-label" [for]="opcion.value" *ngIf="idEstudioToEdit == null">
+                                <input class="form-check-input me-1" type="checkbox" [value]="opcion.value"
+                                    [id]="opcion.value" (change)="handleTipoEstudioNew($event)">
+                                {{ opcion.label }}
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mensajes de errores  -->
+                <div
+                    *ngIf="tiposEstudioFormArray.invalid && (tiposEstudioFormArray.dirty || tiposEstudioFormArray.touched)">
+                    <div *ngIf="tiposEstudioFormArray.errors?.['required']" class="text-danger p-1">
+                        Debe seleccionar al menos un tipo de estudio
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Coordenadas -->
+        <div class="row mt-4 border-bottom border-3">
+            <div class="col-auto">
+                <i class="bi bi-2-circle-fill"></i>
+            </div>
+            <div class="col-auto">
+                <h5>Coordenadas</h5>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <app-coordenadas-form [parentForm]="form"
+                [uploadEstudioToEditFinish]="uploadEstudioToEditFinish"></app-coordenadas-form>
+        </div>
+
+
+        <!-- Imágenes -->
+        <div class="row mt-4 border-bottom border-3">
+            <div class="col-auto">
+                <i class="bi bi-3-circle-fill"></i>
+            </div>
+            <div class="col-auto">
+                <h5>Imágenes</h5>
+            </div>
+        </div>
+        <div class="my-4">
+            <app-imagen-form [parentForm]="form" [uploadEstudioToEditFinish]="uploadEstudioToEditFinish"
+                (readyImagenes)="changeStatusImagenes($event)"></app-imagen-form>
+        </div>
+
+
+        <!-- Archivos Adjuntos  -->
+        <div class="row mt-4 border-bottom border-3">
+            <div class="col-auto">
+                <i class="bi bi-4-circle-fill"></i>
+            </div>
+            <div class="col-auto">
+                <h5>Archivos Adjuntos</h5>
+            </div>
+        </div>
+        <div class="my-4">
+            <app-archivo-form [parentForm]="form" [uploadEstudioToEditFinish]="uploadEstudioToEditFinish"
+                (readyArchivos)="changeStatusArchivos($event)"></app-archivo-form>
+        </div>
+
+        <!-- Mensajes de errores -->
+        <div *ngIf="erroresArray?.length! > 0 ">
+            <div *ngFor="let error of erroresArray">
+                <div *ngIf="error.value !== null" class="alert alert-danger p-2 my-1" role="alert">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    {{error.value}}
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Botones -->
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-outline-primary mt-4" *ngIf="!parameterExists" (click)="postForm()"
+                    [disabled]="isUploadingEstudioToCloud">
+                    <ng-container *ngIf="isUploadingEstudioToCloud; else elseEnviarButton">
+                        <span class="spinner-border spinner-border-sm mx-1" aria-hidden="true"></span>
+                        <span role="status">Loading...</span>
+                    </ng-container>
+                    <ng-template #elseEnviarButton>
+                        Enviar formulario
+                    </ng-template>
+                </button>
+                <button type="submit" class="btn btn-primary mt-4" *ngIf="parameterExists" (click)="putForm()"
+                    [disabled]="isUploadingEstudioToCloud">
+                    <ng-container *ngIf="isUploadingEstudioToCloud; else elseEditarButton">
+                        <span class="spinner-border spinner-border-sm mx-1" aria-hidden="true"></span>
+                        <span role="status">Loading...</span>
+                    </ng-container>
+                    <ng-template #elseEditarButton>
+                        Actualizar formulario
+                    </ng-template>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

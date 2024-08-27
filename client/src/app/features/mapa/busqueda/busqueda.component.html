@@ -1,0 +1,76 @@
+<!-- Formulario  -->
+<form [formGroup]="form">
+    <!-- Consulta por múltiples campos -->
+    <div class="mb-2">
+        <input type="text" placeholder="Nombre estudio, cliente, ubicación" class="form-control form-control-sm"
+            formControlName="consultaMultiple" />
+    </div>
+
+    <!-- Consulta por fechas -->
+    <div class="form-floating mb-2">
+        <input type="date" class="form-control form-control-sm" formControlName="fechaInicio" id="fechaInicio" />
+        <label for="fechaIncio">Fecha inicio</label>
+    </div>
+    <div class="form-floating mb-2">
+        <input type="date" class="form-control form-control-sm" formControlName="fechaFin" id="fechaFin" />
+        <label for="fechaFin">Fecha fin</label>
+    </div>
+
+    <!-- Consulta por tipo de estudio de estudio geofísico -->
+    <div class="mb-2">
+        <select class="form-select form-select-sm text-secondary" formControlName="tipoEstudio">
+            <!-- Opciones de tipo de estudio -->
+            <option value="" disabled selected>Tipo de estudio</option>
+            <option *ngFor="let opcion of tipoEstudioOptions" [value]="opcion.value">
+                {{ opcion.label }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Consulta por area de aplicación de estudio geofísico -->
+    <div class="mb-2">
+        <select class="form-select form-select-sm text-secondary" formControlName="areaEstudio">
+            <!-- Opciones de area de estudio -->
+            <option value="" disabled selected>Área de estudio</option>
+            <option *ngFor="let opcion of areaEstudioOptions" [value]="opcion.value">
+                {{ opcion.label }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Mensajes de errores -->
+    <div *ngIf="form.errors" class="mb-2">
+        <!-- Muestra un mensaje de error si no se proporcionó al menos un campo -->
+        <div *ngIf="form.errors['required']">
+            <small class="text-danger">Por favor, proporciona al menos un campo.</small>
+        </div>
+
+        <!-- Muestra un mensaje de error si las fechas no forman un rango válido -->
+        <div *ngIf="form.errors['dateRange']">
+            <small class="text-danger">Por favor, proporciona ambas fechas</small>
+        </div>
+
+        <!-- Muestra un mensaje de error si las fechas son futuras -->
+        <div *ngIf="form.errors['futureDate']">
+            <small class="text-danger">Las fechas no pueden ser futuras.</small>
+        </div>
+
+        <!-- Muestra un mensaje de error si las fechas son iguales -->
+        <div *ngIf="form.errors['sameDate']">
+            <small class="text-danger">Las fechas no pueden ser iguales.</small>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-around">
+        <!-- Botón submit -->
+        <div>
+            <button type="submit" class="btn btn-outline-primary btn-sm" (click)="postForm()">Buscar</button>
+        </div>
+
+        <!-- Botón Reset -->
+        <div>
+            <button class="btn btn-outline-primary btn-sm" (click)="clear()">Limpiar</button>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,187 @@
+<div [formGroup]="parentForm" class="container mt-2">
+
+  <h6>Seleccionar imágenes</h6>
+
+  <div class="row g-2 align-items-center">
+    <!-- Formulario para seleccionar imágenes -->
+    <div class="col-md">
+      <form class="my-2" enctype="multipart/form-data">
+        <fieldset>
+          <div class="form-group">
+            <div>
+              <!-- Input para seleccionar múltiples archivos -->
+              <input type="file" (change)="prepareImagesForUpload($event)" name="files" multiple class="form-control"
+                accept="image/*" />
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <!-- Mostrar barra de progreso si se está cargando una imagen -->
+    <div class="col-md ">
+      <div *ngIf="fileStatus.status==='progress'">
+        <div class="progress align-middle" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div [style.width.%]="fileStatus.percent"
+            class="progress-bar progress-bar-striped progress-bar-animated bg-success">
+            {{ fileStatus.requestType }} {{ fileStatus.percent }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FormArray para almacenar las imágenes -->
+  <div formArrayName="imagenes">
+    <div *ngFor="let imagen of imagenesFormArray.controls; let i = index" [formGroupName]="i">
+      <!-- Input oculto para almacenar la ruta de la imagen -->
+      <input formControlName="imagenKey" type="hidden">
+    </div>
+  </div>
+
+  <!-- Mensajes de errores -->
+  <div *ngIf="erroresArray?.length! > 0 ">
+    <div *ngFor="let error of erroresArray">
+      <div *ngIf="error !== null" class="alert alert-danger p-2" role="alert">
+        <i class="bi bi-exclamation-triangle"></i>
+        {{error}}
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Mostrar imágenes preparadas para la subida -->
+  <div class="mt-3" *ngIf="imagenesArrayPreview?.length! > 0">
+    <div class="d-flex flex-row justify-content-between align-items-center border-bottom border-2">
+      <div>
+        <h6>
+          <i class="bi bi-cloud-arrow-up"></i>
+          Imágenes a subir
+        </h6>
+      </div>
+      <div>
+        <button (click)="uploadImagenes()" class="btn btn-success btn-sm mb-1" [disabled]="isUploadingImagenesToCloud">
+          <ng-container *ngIf="isUploadingImagenesToCloud; else elseButton">
+            <span class="spinner-border spinner-border-sm mx-1" aria-hidden="true"></span>
+            <span role="status">Loading...</span>
+          </ng-container>
+
+          <ng-template #elseButton>
+            <i class="bi bi-upload"></i>
+            Subir
+          </ng-template>
+        </button>
+      </div>
+    </div>
+
+    <div class="d-flex flex-wrap">
+      <!-- Cards para mostrar las imágenes -->
+      <div class="card text-bg-dark m-2 border border-0 shadow bg-body-tertiary rounded"
+        *ngFor="let imagen of imagenesArrayPreview; let i = index"
+        style="width: 8rem; height: 8rem; position: relative; overflow: hidden;">
+        <!-- Imagen -->
+        <img [src]="imagen.base64" class="card-img" alt="imagen" style="width: 100%; height: 100%; object-fit: cover;"
+          [id]="imagen.fileName" [style.transform]="'rotate(' + (imagen.angle % 360) + 'deg)'">
+        <div class="card-img-overlay d-flex align-items-end p-1 justify-content-center">
+
+          <!-- Botón para eliminar el archivo -->
+          <button type="button" (click)="deleteImagePreview(imagen.fileName)" class="btn btn-secondary btn-sm mx-1"
+            [disabled]="imagen.deleteButtonDisabled">
+            <i class="bi bi-trash"></i>
+          </button>
+
+          <!-- Botón que activará el modal para agrandar la imagen -->
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#modalImagenPreview' + i">
+            <i class="bi bi-arrows-angle-expand"></i>
+          </button>
+
+          <!-- Botón para rotar la imagen 90 grados-->
+          <button type="button" class="btn btn-secondary btn-sm mx-1" (click)="imagen.angle = imagen.angle + 90">
+            <i class="bi bi-arrow-clockwise"></i>
+          </button>
+        </div>
+
+        <!-- Modal para mostrar la imagen agrandada -->
+        <div class="modal fade" [id]="'modalImagenPreview' + i" tabindex="-1"
+          [attr.aria-labelledby]="'modalImagenPreviewLabel' + i" aria-hidden="true">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title text-body-tertiary" [id]="'modalImagenPreviewLabel' + i">Vista detallada:
+                  {{imagen.fileName}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img [src]="imagen.base64" class="img-fluid rotate-fix" alt="Imagen"
+                  [style.transform]="'rotate(' + (imagen.angle % 360) + 'deg)'">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  
+  <!-- Mostrar imágenes subidas -->
+  <div class="mt-3"
+    *ngIf="imagenesArrayUploaded?.length! > 0 || (isUploadingImagenesToEdit && uploadEstudioToEditFinish)">
+    <h6 class="border-bottom border-2">
+      <i class="bi bi-cloud-arrow-up-fill"></i>
+      Imagenes subidas
+    </h6>
+
+    <div *ngIf="isUploadingImagenesToEdit; else contenidoImagenes">
+      <!-- Spinner de carga  -->
+      <div class="spinner-border" aria-hidden="true"></div>
+    </div>
+
+    <ng-template #contenidoImagenes>
+
+      <div class="d-flex flex-wrap">
+        <!-- Cards para mostrar las imágenes -->
+        <div class="card text-bg-dark m-2 border border-0 shadow bg-body-tertiary rounded"
+          *ngFor="let imagen of imagenesArrayUploaded; let i = index"
+          style="width: 8rem; height: 8rem; position: relative; overflow: hidden;">
+
+          <img [src]="imagen.imagenUrl" class="card-img" alt="imagen"
+            style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="card-img-overlay d-flex align-items-end p-1 justify-content-center">
+            <!-- Botón para eliminar el archivo -->
+            <button type="button" (click)="deleteImageUpload(imagen.imagenKey)" class="btn btn-secondary btn-sm mx-1"
+              [disabled]="imagen.deleteButtonDisabled">
+              <i class="bi bi-trash"></i>
+            </button>
+
+            <!-- Botón que activará el modal para agrandar la imagen -->
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+              [attr.data-bs-target]="'#modalImagenUpload' + i">
+              <i class="bi bi-arrows-angle-expand"></i>
+            </button>
+          </div>
+
+
+          <!-- Modal para mostrar la imagen agrandada -->
+          <div class="modal fade" [id]="'modalImagenUpload' + i" tabindex="-1"
+            [attr.aria-labelledby]="'modalImagenUploadLabel' + i" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-body-tertiary" [id]="'modalImagenUploadLabel' + i">Vista detallada:
+                    {{imagen.imagenFileName}}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <img [src]="imagen.imagenUrl" class="img-fluid rotate-fix" alt="Imagen">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>	

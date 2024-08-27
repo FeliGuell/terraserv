@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-dark-subtle shadow">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand icon-link" href="/estudios"><img src="../../../assets/logo-sin-nombre.png" alt="logo"
+                style="width: 2rem;"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Lista -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-medium">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/estudios" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">Buscar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/estudios/form" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">Nuevo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/estudios/registros" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">Registros</a>
+                </li>
+            </ul>
+            <div class="d-none d-sm-block">
+                <!-- Contenido que se muestra solo en pantallas pequeñas o más grandes (576px o más) -->
+                <div class="pe-3 fw-medium">Usuario: {{username}}</div>
+            </div>
+            <div class="d-sm-none">
+                <!-- Contenido que se muestra solo en pantallas extra pequeñas (menos de 576px) -->
+                <div class="pe-3 pb-3 fw-medium">Usuario: {{username}}</div>
+            </div>
+
+
+            <!-- Botón cerrar sesión -->
+            <button *ngIf="userLoginOn" class="btn btn-outline-primary btn-sm" (click)="logout()" routerLink="/login">
+                Salir
+                <i class="bi bi-arrow-bar-right"></i>
+            </button>
+        </div>
+    </div>
+</nav>

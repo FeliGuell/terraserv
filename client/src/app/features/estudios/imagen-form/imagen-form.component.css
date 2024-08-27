@@ -1,0 +1,9 @@
+.rotate-fix {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.popover-content{
+    max-width: 200px;
+}

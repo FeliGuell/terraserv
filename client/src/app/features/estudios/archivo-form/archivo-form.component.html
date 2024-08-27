@@ -1,0 +1,102 @@
+<div [formGroup]="parentForm" class="container mt-2">
+
+  <h6>Seleccionar archivos adjuntos</h6>
+
+  <div class="row g-2 align-items-center">
+    <!-- Formulario para seleccionar archivos -->
+    <div class="col-md">
+      <form class="my-2" enctype="multipart/form-data">
+        <fieldset>
+          <div class="form-group">
+            <div>
+              <!-- Input para seleccionar múltiples archivos -->
+              <input type="file" (change)="uploadArchivos($event)" name="files" multiple class="form-control" />
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <!-- Mostrar barra de progreso si se está cargando un archivo -->
+    <div class="col-md">
+      <div *ngIf="fileStatus.status==='progress'">
+        <div class="progress align-middle" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div [style.width.%]="fileStatus.percent"
+            class="progress-bar progress-bar-striped progress-bar-animated bg-success">
+            {{ fileStatus.requestType }} {{ fileStatus.percent }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FormArray para almacenar los archivos -->
+  <div formArrayName="archivosAdjuntos">
+    <div *ngFor="let archivo of archivosAdjuntosFormArray.controls; let i = index" [formGroupName]="i">
+      <!-- Input oculto para almacenar la ruta del archivo -->
+      <input formControlName="archivoKey" type="hidden">
+    </div>
+  </div>
+
+  <!-- Mensajes de errores -->
+  <div *ngIf="erroresArray?.length! > 0 ">
+    <div *ngFor="let error of erroresArray">
+      <div *ngIf="error !== null" class="alert alert-danger p-2" role="alert">
+        <i class="bi bi-exclamation-triangle"></i>
+        {{error}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Mostrar archivos subidos -->
+  <div class="mt-3" *ngIf="archivosArrayUploaded?.length! > 0 && !isUploadingArchivoToCloud">
+    <h6 class="border-bottom border-2">
+      <i class="bi bi-cloud-arrow-up-fill"></i>
+      Archivos subidos
+    </h6>
+
+    <div *ngIf="isUploadingArchivosToEdit; else contenidoArchivos">
+      <!-- Spinner de carga  -->
+      <div class="spinner-border" aria-hidden="true"></div>
+    </div>
+
+    <ng-template #contenidoArchivos>
+      <!-- Tabla para mostrar cada archivo -->
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre archivo</th>
+              <th scope="col">Tamaño</th>
+              <th scope="col">Ver</th>
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let archivo of archivosArrayUploaded; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{archivo.archivoFileName || archivo.archivoKey || "No disponible"}}</td>
+              <td>{{archivo.archivoSize ? archivo.archivoSize/1000+"KB" : "No disponible"}}</td>
+              <td> <!-- Enlace para visualizar el archivo -->
+                <a href="{{archivo.archivoUrl}}" class="card-text btn btn-outline-secondary btn-sm" target="_blank">
+                  <i class="bi bi-box-arrow-up-right"></i>
+                </a>
+              </td>
+  
+              <td>
+                <!-- Botón para eliminar el archivo -->
+                <button type="button" (click)="deleteArchivo(archivo.archivoKey)"
+                  class="card-text btn btn-outline-secondary btn-sm" [disabled]="archivo.deleteButtonDisabled">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+  </div>
+
+</div>

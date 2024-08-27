@@ -115,7 +115,7 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
 ## Instalación y Configuración
 
   -Backend API
-  # Instalación
+   * Instalación
       1- Instalar Java 17+. Link para descarga: https://www.oracle.com/java/technologies/downloads/#jdk17-windows
       2- Instalar MySQL 8+. Link para descarga: https://dev.mysql.com/downloads/mysql/8.0.html
       3- Instalar Intellij IDEA. Link para descarga: https://www.jetbrains.com/es-es/idea/download/?section=windows
@@ -123,7 +123,7 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
       5- Descargar la carpeta /api del proyecto y abrirla con Intellij IDEA.
       6- Instalar todas las dependencias de Maven
       
-  # Configuración
+  * Configuración
       1- Crear la Base de Datos: Utiliza MySQL Workbench para crear la base de datos necesaria para la aplicación.
       2- Configurar application.properties: En el archivo application.properties, asegúrate de configurar correctamente los siguientes parámetros: 
         - Conexión a MySQL
@@ -148,13 +148,13 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
         - CorsConfig: Asegúrate de configurar la ruta correcta para permitir solicitudes de origen cruzado (CORS).
       
   -FrontEnd Cliente
-  # Instalación
+  * Instalación
     1- Instalar node.js. Link para descarga: https://nodejs.org/en
     2- Instalar Visual Studio Code. Link para descarga: https://code.visualstudio.com/Download
     3- Descargar la carpeta /client del proyecto y abrirla con Visual Studio Code
     4- Instalar todas las dependencias con npm install
     
-  # Configuración
+  * Configuración
     1- En environment.ts colocar las claves para las API.
     2- Crear la clave API_KEY_GOOGLE_PLACES. Puede seguir la documentación en este enlace: https://developers.google.com/maps/documentation/places/web-service/get-api-key?hl=es-419.
     3- Crear la clave API_KEY_STADIA_MAPS.Puede seguir la documentación en este enlace: https://docs.stadiamaps.com/authentication/

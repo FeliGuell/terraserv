@@ -19,6 +19,7 @@ Sistema para gestionar informes de estudios geofísicos.
    - [Ejecutar el Frontend](#ejecutar-el-frontend)
 7. [Despliegue](#despliegue)
 8. [Contacto](#contacto)
+9. [Screen](#screen)
 
 
 
@@ -182,6 +183,25 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
 ## Contacto
   - Gmail: feliguells@gmail.com
   - Telefono: +54 9 2645-846-555
+
+
+## Screen
+   - Login:
+     ![login](https://github.com/user-attachments/assets/7e1f2cce-3013-4b03-b04e-ae34b907f66a)
+
+   - Crear nuevo informe:
+     ![Nuevo](https://github.com/user-attachments/assets/2ab94947-ee04-493b-96cb-382c6eced956)
+
+   - Registros de informes cargados:
+     ![registro](https://github.com/user-attachments/assets/950aed8b-7b29-4eaa-869b-3493dfa7e8d4)
+
+   - Detalles de los informes:
+     ![detalles](https://github.com/user-attachments/assets/533311bf-e0f4-410b-94f2-a1aa99751750)
+
+
+     
+
+
   
   
 

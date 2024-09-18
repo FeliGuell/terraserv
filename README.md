@@ -13,13 +13,12 @@ Sistema para gestionar informes de estudios geofísicos.
 4. [Diagrama de la base de datos](#diagrama-de-la-base-de-datos)
 5. [Instalación y Configuración](#instalación-y-configuración)
    - [Backend (API)](#backend-api)
-   - [Frontend (Cliente)](#frontend-cliente)
-6. [Uso](#uso)
    - [Ejecutar el Backend](#ejecutar-el-backend)
+   - [Frontend (Cliente)](#frontend-cliente)
    - [Ejecutar el Frontend](#ejecutar-el-frontend)
-7. [Despliegue](#despliegue)
-8. [Contacto](#contacto)
-9. [Screen](#screen)
+6. [Despliegue](#despliegue)
+7. [Contacto](#contacto)
+8. [Screen](#screen)
 
 
 
@@ -154,6 +153,9 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
         - SecurityConfig: En esta configuración, el usuario con rol "ADMIN" puede realizar cualquier acción, mientras que el rol "USER" tiene restricciones. 
         Tenlo en cuenta al crear nuevos usuarios.
         - CorsConfig: Asegúrate de configurar la ruta correcta para permitir solicitudes de origen cruzado (CORS).
+
+   ### Ejecutar el Backend
+    - En Intellij IDEA, ejecutar TerraservApiRestApplication.
           
   ### FrontEnd Cliente
    - Instalación
@@ -167,13 +169,8 @@ Listado de las tecnologías, lenguajes, frameworks y herramientas que se utiliza
        3. Crear la clave API_KEY_STADIA_MAPS.Puede seguir la documentación en este enlace: https://docs.stadiamaps.com/authentication/
        4. DELAY simula un retraso en el inicio de sesión, eliminarselo o ponerlo en 0. 
 
-
-## Uso
-   - Ejecutar el Backend
-     En Intellij IDEA, ejecutar TerraservApiRestApplication.
-
-   - Ejecutar el Frontend
-     En Visual Studio Code, ejecutar con el comando "ng serve" en la terminal.
+  ### Ejecutar el Frontend
+    - En Visual Studio Code, ejecutar con el comando "ng serve" en la terminal.
 
      
 ## Despliegue

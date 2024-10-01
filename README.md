@@ -24,7 +24,7 @@ Sistema para gestionar informes de estudios geofísicos.
 
 ## Descripción del Proyecto
 
-Es una aplicación web para gestionar los informes de estudios geofísicos de una empresa. Esta solución permite a la empresa centralizar todos sus informes de los estudios geofísicos, que antes estaban dispersos en diversas carpetas locales en diferentes computadoras. La aplicación facilita la creación, gestión y visualización de estudios geofísicos mediante una interfaz intuitiva y funcionalidades avanzadas como la carga de archivos, almacenamiento en Amazon S3, búsqueda en un mapa interactivo con Leaflet.js, y autocompletado de ubicaciones con Google Places API.
+Es una aplicación web para gestionar los informes de estudios geofísicos de una empresa. Esta solución permite a la empresa centralizar todos sus informes de los estudios geofísicos, que antes estaban dispersos en diversas carpetas locales en diferentes computadoras. La aplicación facilita la creación, gestión y visualización de los informes estudios geofísicos mediante una interfaz intuitiva y funcionalidades avanzadas como la carga de archivos, almacenamiento en Amazon S3, búsqueda en un mapa interactivo con Leaflet.js, y autocompletado de ubicaciones con Google Places API.
 
 
 
